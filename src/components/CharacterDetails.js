@@ -1,13 +1,45 @@
-import axios from "axios";
-import { useParams } from "react-router-dom";
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { NavLink, useParams } from 'react-router-dom'
 
-function CharacterDetails(){
+function CharacterDetails() {
 
-    const {characterId} = useParams();
+    const { characterId } = useParams();
 
-    axios
+    const [details, setDetails] = useState(null);
 
-    return <h1>Character with id: {characterId}</h1>
+    useEffect(() => {
+        axios.get(process.env.REACT_APP_API_BASE_URL + "/characters/" + characterId)
+            .then(response => {
+                setDetails(response.data);
+            })
+            .catch((e) => {
+                console.log(e);
+            });
+    }, []);
+
+
+    const renderDetails = () => {
+        return (
+            <div className='character'>
+                <h2>{details.name}</h2>
+                <p>Occupation: {details.occupation}</p>
+                <p>Weapon: {details.weapon}</p>
+
+                <NavLink to="/characters">Back</NavLink>
+            </div>
+        );
+    }
+
+
+    return (
+        <>
+            {details === null
+                ? <p>loading...</p>
+                : renderDetails()
+            }
+        </>
+    );
 }
 
 export default CharacterDetails;

@@ -20,7 +20,7 @@ function App() {
 
   const fetchCharacters = () => {
     axios
-      .get(process.env.API_BASE_URL + '/characters')
+      .get(process.env.REACT_APP_API_BASE_URL + '/characters')
       .then((response) => {
         const allCharacters = response.data;
         console.log(allCharacters)
@@ -37,7 +37,7 @@ function App() {
 
   const deleteCharacter = (id) => {
     axios
-      .delete(process.env.API_BASE_URL + '/characters/' + id)
+      .delete(process.env.REACT_APP_API_BASE_URL + '/characters/' + id)
       .then((response) => {
         fetchCharacters();
       })
