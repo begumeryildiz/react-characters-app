@@ -36,3 +36,17 @@
 .App footer p {
   color: rgb(0, 107, 161);
 }
+
+a {
+  display: inline-block;
+  padding: 0.5rem;
+  margin: 0.5rem;
+  color:  rgb(111, 0, 221);
+  text-shadow: none;
+}
+a:hover {
+  color:  rgb(55, 2, 108);
+}
+a.active {
+  background-color: rgb(163, 250, 244);
+}

@@ -1,0 +1,14 @@
+.character {
+    border: 1px solid #333;
+    background-color: rgb(255, 239, 225);
+    margin-left: 20rem;
+    margin-right: 20rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    padding: 1rem;
+  }
+  
+  .character button {
+    background-color: indianred;
+    color: white;
+  }
