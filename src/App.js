@@ -1,6 +1,9 @@
 import './App.css';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Routes, Route } from 'react-router-dom';
+import Home from './components/Home';
+import About from './components/About';
 
 function App() {
 
@@ -18,6 +21,7 @@ function App() {
       .get(baseURL + '/characters')
       .then((response) => {
         const allCharacters = response.data;
+        console.log(allCharacters)
         const fistTen = allCharacters.slice(0, 10)
         setCharacters(fistTen);
       })
@@ -58,7 +62,21 @@ function App() {
     <div className="App">
       <header>
         <h1>React Charates App</h1>
+
+        <nav>
+          <a href='#'>Home </a>
+          <a href='#'>About us</a>
+        </nav>
+        
       </header>
+
+      <Routes>
+        <Route path='/' element={ <Home /> }></Route>
+        <Route path='/about' element={ <About /> }></Route>
+      </Routes>
+
+
+
 
       <div>
         { characters === null
