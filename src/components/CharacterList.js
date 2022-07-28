@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom';
 import './CharacterList.css';
 
 function CharacterList(props) {
@@ -9,6 +10,9 @@ function CharacterList(props) {
                     <h2>{element.name}</h2>
                     <p>Occupation: {element.occupation}</p>
                     <p>Weapon: {element.weapon}</p>
+
+                    <NavLink to={`/characters/${element.id}`}>More Details</NavLink>
+                    {/* <NavLink to={"/characters/" + element.id}>More Details</NavLink> */}
 
                     <button onClick={() => { props.callbackToDelete(element.id) }}>Delete</button>
                 </div>

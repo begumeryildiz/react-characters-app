@@ -5,10 +5,11 @@ import { Routes, Route, NavLink } from 'react-router-dom';
 import Home from './components/Home';
 import About from './components/About';
 import CharacterList from './components/CharacterList';
+import CharacterDetails from './components/CharacterDetails';
 
 function App() {
 
-  const baseURL = 'https://ih-crud-api.herokuapp.com';
+  
 
   const [characters, setCharacters] = useState(null);
 
@@ -19,7 +20,7 @@ function App() {
 
   const fetchCharacters = () => {
     axios
-      .get(baseURL + '/characters')
+      .get(process.env.API_BASE_URL + '/characters')
       .then((response) => {
         const allCharacters = response.data;
         console.log(allCharacters)
@@ -36,7 +37,7 @@ function App() {
 
   const deleteCharacter = (id) => {
     axios
-      .delete(baseURL + '/characters/' + id)
+      .delete(process.env.API_BASE_URL + '/characters/' + id)
       .then((response) => {
         fetchCharacters();
       })
@@ -61,6 +62,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />}></Route>
         <Route path='/characters' element={<CharacterList characters={characters} callbackToDelete={deleteCharacter} />}></Route>
+        <Route path='/characters/:characterId' element={ <CharacterDetails /> } />
         <Route path='/about' element={<About />}></Route>
       </Routes>
 
